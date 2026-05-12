@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* =========================
+   Theme (Design System)
+========================= */
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-gilroy), system-ui, sans-serif;
+
+  /* Colors */
+  --color-primary: #1b3022;
+  --color-primary-400: #2d4a35;
+  --color-primary-300: #3d6b4a;
+
+  --color-accent: #f97316;
+  --color-accent-dark: #ea580c;
+
+  --color-bg: #faf7f2;
+  --color-bg-dark: #f0ebe3;
+
+  --color-text: #1b3022;
+  --color-text-light: #6b7280;
+
+  --color-border: #e5e7eb;
+
+  --color-success: #22c55e;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+}
+
+/* =========================
+   Base Styles
+========================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =========================
+   Scrollbar
+========================= */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-300);
+  border-radius: 3px;
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary-300) var(--color-bg);
+}
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* =========================
+   Reusable Utilities
+========================= */
+@layer components {
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .dropdown-link {
+    @apply flex items-center gap-3 px-4 py-2.5 text-sm text-zinc-500 hover:bg-orange-50/80 hover:text-zinc-900 transition-colors;
+  }
+
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 rounded-lg text-white;
+    background-color: var(--color-primary);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-primary-400);
+  }
+
+  .btn-accent {
+    @apply px-4 py-2 rounded-lg text-white;
+    background-color: var(--color-accent);
+  }
+
+  .btn-accent:hover {
+    background-color: var(--color-accent-dark);
+  }
+
+  .input {
+    @apply px-3 py-2 border rounded-lg text-sm;
+    border-color: var(--color-border);
+  }
+}
+
+/* =========================
+   Animations
+========================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation for sliding up search placeholders */
+@keyframes slideUpFade {
+  0% { 
+    opacity: 0; 
+    transform: translateY(15px); 
+  }
+  15% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  85% { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translateY(-15px); 
+  }
+}
+
+.animate-slide-up-fade {
+  animation: slideUpFade 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.4s ease-out forwards;
+}
